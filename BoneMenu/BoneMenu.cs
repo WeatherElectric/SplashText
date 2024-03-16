@@ -12,5 +12,8 @@ internal static class BoneMenu
             Preferences.OwnCategory.SaveToFile(false);
             TextManager.SetText();
         });
+#if DEBUG
+        subCat.CreateFunctionElement("Reroll", Color.white, TextManager.SetText);
+#endif
     }
 }

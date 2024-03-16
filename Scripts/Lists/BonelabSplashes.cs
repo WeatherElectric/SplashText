@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using Newtonsoft.Json;
 using SLZ.Marrow.Warehouse;
+using SLZ.SaveData;
 using UnityEngine.Networking;
 
 namespace WeatherElectric.SplashText.Scripts.Lists;
@@ -51,7 +53,10 @@ public static class BonelabSplashes
         "i'm gonna put 9 realtime lights in the scene, suffer",
         "Only {PalletCount} mods installed? smh",
         "{CurrentAvatar}? what a lame avatar",
-        "oh cool, {CurrentAvatar}, thats a good avatar"
+        "oh cool, {CurrentAvatar}, thats a good avatar",
+        "lol [Height]",
+        "you really use [RandomFavoriteSpawnable]?",
+        "you liked [RandomFavoriteAvatar] enough to put it in your BODYLOG?"
     };
 
     private const string SplashAPI = "https://splashtext.weatherelectric.xyz/";
@@ -96,14 +101,39 @@ public static class BonelabSplashes
         var rnd = new System.Random();
         var randomSplash = Splashes[rnd.Next(Splashes.Length)];
         
-        if (randomSplash.Contains("{PalletCount}"))
+        if (randomSplash.Contains("[PalletCount]"))
         {
-            randomSplash = randomSplash.Replace("{PalletCount}", AssetWarehouse.Instance.GetPallets().Count.ToString());
+            randomSplash = randomSplash.Replace("[PalletCount]", AssetWarehouse.Instance.GetPallets().Count.ToString());
         }
 
-        if (randomSplash.Contains("{CurrentAvatar}"))
+        if (randomSplash.Contains("[CurrentAvatar]"))
         {
-            randomSplash = randomSplash.Replace("{CurrentAvatar}", Player.rigManager.AvatarCrate.Crate.Title);
+            var crateRef = new AvatarCrateReference(Main.SaveData.PlayerSettings.CurrentAvatar);
+            randomSplash = randomSplash.Replace("[CurrentAvatar]", crateRef.Crate.Title);
+        }
+        
+        if (randomSplash.Contains("[Height"))
+        {
+            var height = Main.SaveData.PlayerSettings.PlayerHeight;
+            int feet = (int)height;
+            float inches = height - feet;
+            randomSplash = randomSplash.Replace("[Height]", $"{feet}'{inches}\"");
+        }
+
+        // It's gonna say this has errors: it does not. it builds fine, il2cpp just sucks
+        if (randomSplash.Contains("[RandomFavoriteSpawnable]"))
+        {
+            var spawnable = Main.SaveData.PlayerSettings.FavoriteSpawnables[rnd.Next(Main.SaveData.PlayerSettings.FavoriteSpawnables.Count)];
+            var crateRef = new SpawnableCrateReference(spawnable);
+            randomSplash = randomSplash.Replace("[RandomFavoriteSpawnable]", crateRef.Crate.Title);
+        }
+        
+        if (randomSplash.Contains("[RandomFavoriteAvatar]"))
+        {
+            
+            var avatar = Main.SaveData.PlayerSettings.FavoriteAvatars[rnd.Next(Main.SaveData.PlayerSettings.FavoriteAvatars.Count)];
+            var crateRef = new AvatarCrateReference(avatar);
+            randomSplash = randomSplash.Replace("[RandomFavoriteAvatar]", crateRef.Crate.Title);
         }
         
         return randomSplash;

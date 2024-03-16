@@ -14,6 +14,9 @@ There are a few templates for use in entries.
 
 These templates get replaced with what their value is.
 
-* {CurrentAvatar} - What avatar you are
-* {UserName} = Your windows username
-* {PalletCount} = How many SDK mods you have installed
+* [CurrentAvatar] - What avatar you are
+* [UserName] = Your windows username
+* [PalletCount] = How many SDK mods you have installed
+* [Height] = Your height
+* [RandomFavoriteAvatar] = A random favorite avatar
+* [RandomFavoriteSpawnable] = A random favorite spawnable
