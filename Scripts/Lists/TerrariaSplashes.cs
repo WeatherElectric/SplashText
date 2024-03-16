@@ -1,0 +1,82 @@
+﻿namespace WeatherElectric.SplashText.Scripts.Lists;
+
+public static class TerrariaSplashes
+{
+    private static readonly string[] Splashes =
+    {
+        "Dig Peon, Dig!",
+        "Epic Dirt",
+        "Adaman-TIGHT!",
+        "Sand is Overpowered",
+        "Terraria Part 3: The Return of the Guide",
+        "A Bunnies Tale",
+        "Dr. Bones and the Temple of Blood Moon",
+        "Slimeassic Park",
+        "The Grass Is Greener on This Side",
+        "Small Blocks, Not For Children Under the Age of 5",
+        "Digger T' Blocks",
+        "There is No Cow Layer",
+        "Suspicious Looking Eyeballs",
+        "Purple Grass!",
+        "No one Dug Behind!",
+        "The Water Fall Of Content!",
+        "Earthbound",
+        "Dig Dug Ain't Got Nuthin On Me",
+        "Ore's Well That Ends Well",
+        "Judgement Clay",
+        "Terrestrial Trouble",
+        "Obsessive-Compulsive Discovery Simulator",
+        "Red Dev Redemption",
+        "Rise of The Slimes",
+        "Now with more things to kill you!",
+        "Rumors of the Guide's death were greatly exaggerated",
+        "I Pity the Tools...",
+        "A spelunker says 'What'?",
+        "So then I said 'Something about a PC update...'",
+        "May the blocks be with you",
+        "Better than life",
+        "Now in 1D",
+        "Coming soon to a computer near you",
+        "Dividing by zero",
+        "Now with SOUND",
+        "Press alt-f4",
+        "I Pity the Tools",
+        "You sand bro?",
+        "A good day to dig hard",
+        "Can you Re-Dig-It?",
+        "I don't know that-- aaaaa!",
+        "What's that purple spiked thing?",
+        "I wanna be the guide",
+        "Cthulhu is mad.. and is missing an eye!",
+        "NOT THE BEES!!!",
+        "Legend of Maxx",
+        "Cult of Cenx",
+        "Terraria 2: Electric Boogaloo",
+        "Also try Minecraft!",
+        "Also try Edge of Space!",
+        "Also try Breath of the Wild!",
+        "I just wanna know where the gold at?",
+        "Now with more ducks!",
+        "9+1=11",
+        "1+1=10",
+        "Infinite Plantera",
+        "Also try Stardew Valley!",
+        "Also try Core Keeper!",
+        "Also try Project Zomboid!",
+        "Now with microtransactions!",
+        "Built on Blockchain Teechnology",
+        "Now with even less Ocram!",
+        "Touch Grass Simulator",
+        "Don't dig up!",
+        "For the worthy!",
+        "Now with even more Ocram!",
+        "Shut Up and Dig Gaiden!",
+        "Also try Don't Starve!"
+    };
+    
+    public static string GetRandomSplash()
+    {
+        var rnd = new System.Random();
+        return Splashes[rnd.Next(Splashes.Length)];
+    }
+}
