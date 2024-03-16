@@ -1,4 +1,6 @@
-﻿namespace WeatherElectric.SplashText.Scripts.Helpers;
+﻿using SLZ.Marrow.Warehouse;
+
+namespace WeatherElectric.SplashText.Scripts.Helpers;
 
 internal static class EntryHelper
 {
@@ -7,11 +9,23 @@ internal static class EntryHelper
         var rnd = new System.Random();
         var lines = File.ReadAllLines(UserData.EntriesPath);
         var r = rnd.Next(lines.Length);
-        var line = lines[r];
-        if (line.Contains("{UserName}"))
+        var randomSplash = lines[r];
+        
+        if (randomSplash.Contains("{UserName}"))
         {
-            line = line.Replace("{UserName}", Environment.UserName);
+            randomSplash = randomSplash.Replace("{UserName}", Environment.UserName);
         }
-        return line;
+        
+        if (randomSplash.Contains("{PalletCount}"))
+        {
+            randomSplash = randomSplash.Replace("{PalletCount}", AssetWarehouse.Instance.GetPallets().Count.ToString());
+        }
+
+        if (randomSplash.Contains("{CurrentAvatar}"))
+        {
+            randomSplash = randomSplash.Replace("{CurrentAvatar}", Player.rigManager.AvatarCrate.Crate.Title);
+        }
+        
+        return randomSplash;
     }
 }

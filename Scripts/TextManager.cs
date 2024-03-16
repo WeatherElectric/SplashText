@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using TMPro;
 using UnityEngine.SceneManagement;
-using WeatherElectric.SplashText.Scripts.Helpers;
-using WeatherElectric.SplashText.Scripts.Lists;
 using Object = UnityEngine.Object;
 
 namespace WeatherElectric.SplashText.Scripts;

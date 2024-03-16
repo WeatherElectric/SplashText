@@ -1,11 +1,5 @@
-﻿using System.Linq;
-using HarmonyLib;
+﻿using HarmonyLib;
 using SLZ.Marrow.SceneStreaming;
-using SLZ.Marrow.Warehouse;
-using TMPro;
-using UnityEngine.SceneManagement;
-using WeatherElectric.SplashText.Scripts;
-using Object = UnityEngine.Object;
 
 namespace WeatherElectric.SplashText;
 
@@ -15,8 +9,8 @@ public class Main : MelonMod
     internal const string Description = "Adds splash text to Void G114's menu.";
     internal const string Author = "SoulWithMae";
     internal const string Company = "Weather Electric";
-    internal const string Version = "0.0.1";
-    internal const string DownloadLink = null;
+    internal const string Version = "1.0.0";
+    internal const string DownloadLink = "https://bonelab.thunderstore.io/package/SoulWithMae/SplashText/";
     
     public override void OnInitializeMelon()
     {

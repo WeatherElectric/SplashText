@@ -1,6 +1,4 @@
-﻿using WeatherElectric.SplashText.Scripts;
-
-namespace WeatherElectric.SplashText.Menu;
+﻿namespace WeatherElectric.SplashText.Menu;
 
 internal static class BoneMenu
 {
