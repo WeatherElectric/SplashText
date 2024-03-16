@@ -82,6 +82,11 @@ public static class BonelabSplashes
             
             ModConsole.Msg($"Text recieved: {randomSplash}", 1);
             
+            if (randomSplash.Contains("[UserName]"))
+            {
+                randomSplash = randomSplash.Replace("[UserName]", Environment.UserName);
+            }
+            
             if (randomSplash.Contains("[PalletCount]"))
             {
                 randomSplash = randomSplash.Replace("[PalletCount]", AssetWarehouse.Instance.GetPallets().Count.ToString());
@@ -153,6 +158,11 @@ public static class BonelabSplashes
             int feet = (int)height;
             float inches = height - feet;
             randomSplash = randomSplash.Replace("[Height]", $"{feet}'{inches}\"");
+        }
+        
+        if (randomSplash.Contains("[UserName]"))
+        {
+            randomSplash = randomSplash.Replace("[UserName]", Environment.UserName);
         }
 
         // It's gonna say this has errors: it does not. it builds fine, il2cpp just sucks

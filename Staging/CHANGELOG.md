@@ -1,3 +1,6 @@
+**v1.1.2**
+* I'm really smart. Forgot to put in a check for [UserName] in the remote splash text handler.
+
 **v1.1.1**
 * Fixed oversight in remote splash text handling
 

@@ -61,6 +61,7 @@ internal static class TextManager
     public static void SetText()
     {
         if (_textMeshPro == null) return;
+
         switch (Preferences.SplashMode.Value)
         {
             case SplashMode.Minecraft:
