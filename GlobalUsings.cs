@@ -6,6 +6,7 @@ global using MelonLoader;
 global using WeatherElectric.SplashText.Melon;
 global using BoneLib.BoneMenu;
 global using BoneLib.BoneMenu.Elements;
+global using SLZ.Marrow.Warehouse;
 global using UnityEngine;
 global using WeatherElectric.SplashText.Menu;
 global using WeatherElectric.SplashText.Scripts;

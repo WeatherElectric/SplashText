@@ -1,6 +1,4 @@
-﻿using SLZ.Marrow.Warehouse;
-
-namespace WeatherElectric.SplashText.Scripts.Helpers;
+﻿namespace WeatherElectric.SplashText.Scripts.Helpers;
 
 internal static class EntryHelper
 {

@@ -1,3 +1,6 @@
+**v1.1.1**
+* Fixed oversight in remote splash text handling
+
 **v1.1.0**
 * Fixed templates not working
 * Added [Height], [RandomFavoriteAvatar] and [RandomFavoriteSpawnable] templates
