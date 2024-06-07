@@ -2,8 +2,8 @@
 
 internal static class UserData
 {
-    private static readonly string WeatherElectricPath = Path.Combine(MelonUtils.UserDataDirectory, "Weather Electric");
-    private static readonly string ModPath = Path.Combine(MelonUtils.UserDataDirectory, "Weather Electric/SplashText");
+    private static readonly string WeatherElectricPath = Path.Combine(MelonEnvironment.UserDataDirectory, "Weather Electric");
+    private static readonly string ModPath = Path.Combine(MelonEnvironment.UserDataDirectory, "Weather Electric/SplashText");
     public static readonly string EntriesPath = Path.Combine(ModPath, "UserEntries.txt");
 
     public static void Setup()

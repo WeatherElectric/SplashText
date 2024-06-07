@@ -53,7 +53,8 @@ public static class BonelabSplashes
         "oh cool, {CurrentAvatar}, thats a good avatar",
         "lol [Height]",
         "you really use [RandomFavoriteSpawnable]?",
-        "you liked [RandomFavoriteAvatar] enough to put it in your BODYLOG?"
+        "you liked [RandomFavoriteAvatar] enough to put it in your BODYLOG?",
+        "Holy shit, Patch 4 really came out!"
     };
 
     private const string SplashAPI = "https://splashtext.weatherelectric.xyz/";
@@ -98,7 +99,7 @@ public static class BonelabSplashes
                 randomSplash = randomSplash.Replace("[CurrentAvatar]", crateRef.Crate.Title);
             }
         
-            if (randomSplash.Contains("[Height"))
+            if (randomSplash.Contains("[Height]"))
             {
                 var height = Main.SaveData.PlayerSettings.PlayerHeight;
                 int feet = (int)height;
