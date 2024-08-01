@@ -68,11 +68,17 @@
         <Reference Include="Il2CppSLZ.Marrow">
             <HintPath>Links\MelonLoader\Il2CppAssemblies\Il2CppSLZ.Marrow.dll</HintPath>
         </Reference>
+        <Reference Include="Il2CppSystem">
+            <HintPath>Links\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
+        </Reference>
         <Reference Include="Il2Cppmscorlib">
             <HintPath>Links\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
             <HintPath>Links\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>Links\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
         </Reference>
         <Reference Include="Il2CppInterop.Runtime">
             <HintPath>Links\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
