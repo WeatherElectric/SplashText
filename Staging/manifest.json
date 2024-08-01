@@ -4,6 +4,6 @@
     "website_url": "https://github.com/WeatherElectric/SplashText",
     "description": "Adds splash text to Void G114's menu.",
     "dependencies": [
-		"gnonme-BoneLib-2.4.0"
+		"gnonme-BoneLib-3.0.0"
     ]
 }
