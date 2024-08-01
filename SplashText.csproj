@@ -8,8 +8,8 @@
         <LangVersion>default</LangVersion>
         <IsPackable>false</IsPackable>
         <Company>Weather Electric</Company>
-        <AssemblyVersion>1.0.0.0</AssemblyVersion>
-        <FileVersion>1.0.0.0</FileVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <FileVersion>2.0.0.0</FileVersion>
         <NeutralLanguage>en-US</NeutralLanguage>
         <AssemblyName>SplashText</AssemblyName>
     </PropertyGroup>
@@ -58,6 +58,9 @@
         </Reference>
         <Reference Include="MelonLoader">
             <HintPath>Links\MelonLoader\net6\MelonLoader.dll</HintPath>
+        </Reference>
+        <Reference Include="BoneLib">
+            <HintPath>Links\Game\Mods\BoneLib.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp">
             <HintPath>Links\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>

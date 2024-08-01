@@ -36,16 +36,16 @@ internal static class EntryHelper
         // It's gonna say this has errors: it does not. it builds fine, il2cpp just sucks
         if (randomSplash.Contains("[RandomFavoriteSpawnable]"))
         {
-            var spawnable = Main.SaveData.PlayerSettings.FavoriteSpawnables[rnd.Next(Main.SaveData.PlayerSettings.FavoriteSpawnables.Count)];
-            var crateRef = new SpawnableCrateReference(spawnable);
+            var spawnable = Main.SaveData.PlayerSettings.FavoriteSpawnables[(Index)rnd.Next(Main.SaveData.PlayerSettings.FavoriteSpawnables.Count)];
+            var crateRef = new SpawnableCrateReference((Barcode)spawnable);
             randomSplash = randomSplash.Replace("[RandomFavoriteSpawnable]", crateRef.Crate.Title);
         }
         
         if (randomSplash.Contains("[RandomFavoriteAvatar]"))
         {
             
-            var avatar = Main.SaveData.PlayerSettings.FavoriteAvatars[rnd.Next(Main.SaveData.PlayerSettings.FavoriteAvatars.Count)];
-            var crateRef = new AvatarCrateReference(avatar);
+            var avatar = Main.SaveData.PlayerSettings.FavoriteAvatars[(Index)rnd.Next(Main.SaveData.PlayerSettings.FavoriteAvatars.Count)];
+            var crateRef = new AvatarCrateReference((Barcode)avatar);
             randomSplash = randomSplash.Replace("[RandomFavoriteAvatar]", crateRef.Crate.Title);
         }
         
