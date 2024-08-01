@@ -28,8 +28,8 @@ internal static class EntryHelper
         if (randomSplash.Contains("[Height"))
         {
             var height = Main.SaveData.PlayerSettings.PlayerHeight;
-            int feet = (int)height;
-            float inches = height - feet;
+            var feet = (int)height;
+            var inches = height - feet;
             randomSplash = randomSplash.Replace("[Height]", $"{feet}'{inches}\"");
         }
 

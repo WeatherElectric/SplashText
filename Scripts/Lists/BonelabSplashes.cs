@@ -5,8 +5,8 @@ namespace WeatherElectric.SplashText.Scripts.Lists;
 
 public static class BonelabSplashes
 {
-    private static readonly string[] Splashes = 
-    {
+    private static readonly string[] Splashes =
+    [
         "Into the void with you!",
         "What up, son!",
         "Thursday, Yes, This Thursday!",
@@ -48,14 +48,15 @@ public static class BonelabSplashes
         "breadsoup's cooking \ud83d\udd25",
         "6 hour buffer fucking SUCKS",
         "i'm gonna put 9 realtime lights in the scene, suffer",
-        "Only {PalletCount} mods installed? smh",
-        "{CurrentAvatar}? what a lame avatar",
-        "oh cool, {CurrentAvatar}, thats a good avatar",
+        "Only [PalletCount] mods installed? smh",
+        "[CurrentAvatar]? what a lame avatar",
+        "oh cool, [CurrentAvatar], thats a good avatar",
         "lol [Height]",
         "you really use [RandomFavoriteSpawnable]?",
         "you liked [RandomFavoriteAvatar] enough to put it in your BODYLOG?",
-        "Holy shit, Patch 4 really came out!"
-    };
+        "Holy shit, Patch 4 really came out!",
+        "quest code modding died, rest in piss"
+    ];
 
     private const string SplashAPI = "https://splashtext.weatherelectric.xyz/";
 

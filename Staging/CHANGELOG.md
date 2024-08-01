@@ -1,3 +1,6 @@
+**v2.0.0**
+* Patch 5 Support
+
 **v1.1.2**
 * I'm really smart. Forgot to put in a check for [UserName] in the remote splash text handler.
 
