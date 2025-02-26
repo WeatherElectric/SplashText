@@ -3,7 +3,7 @@
 public static class MinecraftSplashes
 {
     private static readonly string[] Splashes =
-    {
+    [
         "...!",
         ".party()!",
         "IS YOU! I HAVE MY FRIEND",
@@ -246,12 +246,12 @@ public static class MinecraftSplashes
         "You can't explain that!",
         "You're going too fast!",
         "You've got a brand new key!"
-    };
+    ];
 
     public static string GetRandomSplash()
     {
         var rnd = new System.Random();
-        string randomSplash = Splashes[rnd.Next(Splashes.Length)];
+        var randomSplash = Splashes[rnd.Next(Splashes.Length)];
         if (randomSplash.Contains("IS YOU! I HAVE MY FRIEND"))
         {
             randomSplash = $"{Environment.UserName} IS YOU! I HAVE MY FRIEND";

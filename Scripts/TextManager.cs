@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using TMPro;
+﻿using Il2CppTMPro;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
@@ -19,13 +18,13 @@ internal static class TextManager
     
     private static void CreateGameObject()
     {
-        GameObject uiRoot = FuckYouSLZ("//-----UI");
+        var uiRoot = FuckYouSLZ("//-----UI");
         ModConsole.Msg($"Found UI root: {uiRoot.name}", 1);
-        Transform canvasRoot = uiRoot.transform.Find("CANVAS_UX");
+        var canvasRoot = uiRoot.transform.Find("CANVAS_UX");
         ModConsole.Msg("Found canvas root", 1);
-        Transform menuRoot = canvasRoot.Find("MENU");
+        var menuRoot = canvasRoot.Find("MENU");
         ModConsole.Msg("Found menu root", 1);
-        GameObject buildInfoObj = menuRoot.Find("txt_buildInfo").gameObject;
+        var buildInfoObj = menuRoot.Find("txt_buildInfo").gameObject;
         ModConsole.Msg("Found build info object", 1);
         _splashTextHost = Object.Instantiate(buildInfoObj, menuRoot.transform);
         ModConsole.Msg("Created splash text host", 1);
@@ -35,7 +34,7 @@ internal static class TextManager
         // SLZ tends to put // in their gameobject names, which fucks up GameObject.Find
         GameObject FuckYouSLZ(string name)
         {
-            Scene scene = SceneManager.GetActiveScene();
+            var scene = SceneManager.GetActiveScene();
             GameObject[] rootObjects = scene.GetRootGameObjects();
             return rootObjects.FirstOrDefault(rootObject => rootObject.name == name);
         }
@@ -44,7 +43,7 @@ internal static class TextManager
     private static void SetGameObjectPosition()
     {
         if (_splashTextHost == null) return;
-        RectTransform splashTextRect = _splashTextHost.GetComponent<RectTransform>();
+        var splashTextRect = _splashTextHost.GetComponent<RectTransform>();
         ModConsole.Msg("Got splash text rect", 1);
         splashTextRect.position = new Vector3(28.1982f, 2.1303f, -3.7628f);
         ModConsole.Msg("Set splash text position", 1);

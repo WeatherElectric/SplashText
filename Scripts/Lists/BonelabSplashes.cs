@@ -5,8 +5,8 @@ namespace WeatherElectric.SplashText.Scripts.Lists;
 
 public static class BonelabSplashes
 {
-    private static readonly string[] Splashes = 
-    {
+    internal static readonly string[] Splashes =
+    [
         "Into the void with you!",
         "What up, son!",
         "Thursday, Yes, This Thursday!",
@@ -23,7 +23,6 @@ public static class BonelabSplashes
         "Also try Nervbox!",
         "the blankbox entity is here",
         "rigmanager's null lol",
-        "Fuck you Rican!",
         "today i will sync physics; duplicalte camera",
         "The new source of bodycam footage for edgy kids!",
         "I bet my life it'll be Thursday!",
@@ -48,13 +47,49 @@ public static class BonelabSplashes
         "breadsoup's cooking \ud83d\udd25",
         "6 hour buffer fucking SUCKS",
         "i'm gonna put 9 realtime lights in the scene, suffer",
-        "Only {PalletCount} mods installed? smh",
-        "{CurrentAvatar}? what a lame avatar",
-        "oh cool, {CurrentAvatar}, thats a good avatar",
+        "Only [PalletCount] mods installed? smh",
+        "[CurrentAvatar]? what a lame avatar",
+        "oh cool, [CurrentAvatar], thats a good avatar",
         "lol [Height]",
         "you really use [RandomFavoriteSpawnable]?",
-        "you liked [RandomFavoriteAvatar] enough to put it in your BODYLOG?"
-    };
+        "you liked [RandomFavoriteAvatar] enough to put it in your BODYLOG?",
+        "you csnt act like I dont innovare bonelab",
+        "there's a nullbody behind you btw",
+        "Now on Nintendo Labo!",
+        "Use mod-help instead of mod-general you dinguses",
+        "pysics sink",
+        "hop on entanglement",
+        "use UABE to install mods!",
+        "the grand migration to melonloader 0.2",
+        "C:/Users/[UserName]/AppData/LocalLow/Stress Level Zero/BONELAB/Mods!",
+        "Patch 7?",
+        "bring back bw chaos",
+        "oregano's texture streaming hell!",
+        "hi adam!",
+        "hi cam!",
+        "hi [UserName]!",
+        "with the man who sold the world",
+        "fuck you, i'm putting mesh colliders on everything. convex? no, CONCAVE!",
+        "BL unity upgrade to 2022 when",
+        "I WILL NEVER PACK FOR QUEST!",
+        "damn shader variants",
+        "LitMAS Standard!",
+        "RIP depth texture (on quest lol)",
+        "RIP constant force (on quest lol)",
+        "Don't bother with the dungeon warrior secret, its ass",
+        "at least it's not togen!",
+        "[RandomFavoriteSpawnable] isn't even good.",
+        "hey wait, you're not [CurrentAvatar], you're [UserName]!",
+        "this is the 73rd line of the splash text list!",
+        "im a wizard, watch, you have [RandomFavoriteAvatar] on your bodylog, was i right?",
+        "cam's furry comission will be in patch 7!",
+        "quest code modding died, rest in piss",
+        "hateful of all else!",
+        ":3",
+        "fuck you, i'm a bonelab splash",
+        "fuckin [UserName] is here",
+        "do you think steam would take down bonelab's page because the game uses AI in some places"
+    ];
 
     private const string SplashAPI = "https://splashtext.weatherelectric.xyz/";
 
@@ -67,7 +102,7 @@ public static class BonelabSplashes
 
     private static IEnumerator FetchText(FetchTextCallback callback)
     {
-        UnityWebRequest request = UnityWebRequest.Get(SplashAPI);
+        var request = UnityWebRequest.Get(SplashAPI);
         var asyncOperation = request.SendWebRequest();
         
         while (!asyncOperation.isDone)
@@ -77,51 +112,12 @@ public static class BonelabSplashes
         
         if (request.result == UnityWebRequest.Result.Success)
         {
-            var rnd = new System.Random();
-            string randomSplash = request.downloadHandler.text;
+            var randomSplash = request.downloadHandler.text;
             
             ModConsole.Msg($"Text recieved: {randomSplash}", 1);
             
-            if (randomSplash.Contains("[UserName]"))
-            {
-                randomSplash = randomSplash.Replace("[UserName]", Environment.UserName);
-            }
-            
-            if (randomSplash.Contains("[PalletCount]"))
-            {
-                randomSplash = randomSplash.Replace("[PalletCount]", AssetWarehouse.Instance.GetPallets().Count.ToString());
-            }
+            randomSplash = EntryHelper.ProcessTemplates(randomSplash);
 
-            if (randomSplash.Contains("[CurrentAvatar]"))
-            {
-                var crateRef = new AvatarCrateReference(Main.SaveData.PlayerSettings.CurrentAvatar);
-                randomSplash = randomSplash.Replace("[CurrentAvatar]", crateRef.Crate.Title);
-            }
-        
-            if (randomSplash.Contains("[Height"))
-            {
-                var height = Main.SaveData.PlayerSettings.PlayerHeight;
-                int feet = (int)height;
-                float inches = height - feet;
-                randomSplash = randomSplash.Replace("[Height]", $"{feet}'{inches}\"");
-            }
-
-            // It's gonna say this has errors: it does not. it builds fine, il2cpp just sucks
-            if (randomSplash.Contains("[RandomFavoriteSpawnable]"))
-            {
-                var spawnable = Main.SaveData.PlayerSettings.FavoriteSpawnables[rnd.Next(Main.SaveData.PlayerSettings.FavoriteSpawnables.Count)];
-                var crateRef = new SpawnableCrateReference(spawnable);
-                randomSplash = randomSplash.Replace("[RandomFavoriteSpawnable]", crateRef.Crate.Title);
-            }
-        
-            if (randomSplash.Contains("[RandomFavoriteAvatar]"))
-            {
-            
-                var avatar = Main.SaveData.PlayerSettings.FavoriteAvatars[rnd.Next(Main.SaveData.PlayerSettings.FavoriteAvatars.Count)];
-                var crateRef = new AvatarCrateReference(avatar);
-                randomSplash = randomSplash.Replace("[RandomFavoriteAvatar]", crateRef.Crate.Title);
-            }
-            
             callback(randomSplash);
         }
         else
@@ -155,8 +151,8 @@ public static class BonelabSplashes
         if (randomSplash.Contains("[Height"))
         {
             var height = Main.SaveData.PlayerSettings.PlayerHeight;
-            int feet = (int)height;
-            float inches = height - feet;
+            var feet = (int)height;
+            var inches = height - feet;
             randomSplash = randomSplash.Replace("[Height]", $"{feet}'{inches}\"");
         }
         
@@ -168,16 +164,16 @@ public static class BonelabSplashes
         // It's gonna say this has errors: it does not. it builds fine, il2cpp just sucks
         if (randomSplash.Contains("[RandomFavoriteSpawnable]"))
         {
-            var spawnable = Main.SaveData.PlayerSettings.FavoriteSpawnables[rnd.Next(Main.SaveData.PlayerSettings.FavoriteSpawnables.Count)];
-            var crateRef = new SpawnableCrateReference(spawnable);
+            var spawnable = Main.SaveData.PlayerSettings.FavoriteSpawnables[(Index)rnd.Next(Main.SaveData.PlayerSettings.FavoriteSpawnables.Count)];
+            var crateRef = new SpawnableCrateReference((Barcode)spawnable);
             randomSplash = randomSplash.Replace("[RandomFavoriteSpawnable]", crateRef.Crate.Title);
         }
         
         if (randomSplash.Contains("[RandomFavoriteAvatar]"))
         {
             
-            var avatar = Main.SaveData.PlayerSettings.FavoriteAvatars[rnd.Next(Main.SaveData.PlayerSettings.FavoriteAvatars.Count)];
-            var crateRef = new AvatarCrateReference(avatar);
+            var avatar = Main.SaveData.PlayerSettings.FavoriteAvatars[(Index)rnd.Next(Main.SaveData.PlayerSettings.FavoriteAvatars.Count)];
+            var crateRef = new AvatarCrateReference((Barcode)avatar);
             randomSplash = randomSplash.Replace("[RandomFavoriteAvatar]", crateRef.Crate.Title);
         }
         
