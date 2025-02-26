@@ -3,7 +3,7 @@
 public static class TerrariaSplashes
 {
     private static readonly string[] Splashes =
-    {
+    [
         "Dig Peon, Dig!",
         "Epic Dirt",
         "Adaman-TIGHT!",
@@ -72,7 +72,7 @@ public static class TerrariaSplashes
         "Now with even more Ocram!",
         "Shut Up and Dig Gaiden!",
         "Also try Don't Starve!"
-    };
+    ];
     
     public static string GetRandomSplash()
     {

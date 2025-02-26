@@ -4,16 +4,16 @@ internal static class BoneMenu
 {
     public static void Setup()
     {
-        MenuCategory mainCat = MenuManager.CreateCategory("Weather Electric", "#6FBDFF");
-        MenuCategory subCat = mainCat.CreateCategory("Splash Text", Color.yellow);
-        subCat.CreateEnumElement("Splash Mode", Color.white, Preferences.SplashMode.Value, v =>
+        var mainCat = Page.Root.CreatePage("<color=#6FBDFF>Weather Electric</color>", Color.cyan);
+        var subCat = mainCat.CreatePage("Splash Text", Color.yellow);
+        subCat.CreateEnum("Splash Mode", Color.white, Preferences.SplashMode.Value, v =>
         {
-            Preferences.SplashMode.Value = v;
+            Preferences.SplashMode.Value = (SplashMode)v;
             Preferences.OwnCategory.SaveToFile(false);
             TextManager.SetText();
         });
 #if DEBUG
-        subCat.CreateFunctionElement("Reroll", Color.white, TextManager.SetText);
+        subCat.CreateFunction("Reroll", Color.white, TextManager.SetText);
 #endif
     }
 }

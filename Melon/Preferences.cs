@@ -1,4 +1,7 @@
 ﻿// ReSharper disable MemberCanBePrivate.Global, these categories may be used outside of this namespace to create bonemenu options.
+
+using MelonLoader.Utils;
+
 namespace WeatherElectric.SplashText.Melon;
 
 internal static class Preferences
@@ -14,12 +17,12 @@ internal static class Preferences
     public static void Setup()
     {
         LoggingMode = GlobalCategory.GetEntry<int>("LoggingMode") ?? GlobalCategory.CreateEntry("LoggingMode", 0, "Logging Mode", "The level of logging to use. 0 = Important Only, 1 = All");
-        GlobalCategory.SetFilePath(MelonUtils.UserDataDirectory+"/WeatherElectric.cfg");
+        GlobalCategory.SetFilePath(MelonEnvironment.UserDataDirectory+"/WeatherElectric.cfg");
         GlobalCategory.SaveToFile(false);
         OfflineMode = OwnCategory.CreateEntry("OfflineMode", false, "Offline Mode", "If true, the mod will not fetch splash text from an external webserver. However, you will also not get any updates to the splash text list.");
         SplashMode = OwnCategory.CreateEntry("SplashMode", Melon.SplashMode.Bonelab, "Splash Mode", "The mode to use for splash text. UserEntries = Use user entries, Minecraft = Use Minecraft splash text, Bonelab = Use Bonelab/Bonelab community related splash text. Terraria = Use Terraria splash text.");
         Thingy = OwnCategory.CreateEntry("Thingy", "", "Thingy");
-        OwnCategory.SetFilePath(MelonUtils.UserDataDirectory+"/WeatherElectric.cfg");
+        OwnCategory.SetFilePath(MelonEnvironment.UserDataDirectory+"/WeatherElectric.cfg");
         OwnCategory.SaveToFile(false);
         ModConsole.Msg("Finished preferences setup for SplashText", 1);
     }
