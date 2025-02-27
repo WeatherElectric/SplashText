@@ -116,7 +116,7 @@ public static class BonelabSplashes
             
             ModConsole.Msg($"Text recieved: {randomSplash}", 1);
             
-            randomSplash = EntryHelper.ProcessTemplates(randomSplash);
+            randomSplash = TemplateProcessing.Process(randomSplash);
 
             callback(randomSplash);
         }

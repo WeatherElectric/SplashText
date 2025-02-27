@@ -20,3 +20,9 @@ These templates get replaced with what their value is.
 * [Height] = Your height
 * [RandomFavoriteAvatar] = A random favorite avatar
 * [RandomFavoriteSpawnable] = A random favorite spawnable
+* [CPU] = Your CPU
+* [GPU] = Your GPU
+* [RAM] = Your RAM amount
+* [OS] = Your OS
+* [GPUVendor] = Your GPU vendor
+* [MachineName] = Your machine name
