@@ -77,7 +77,6 @@ public static class BonelabSplashes
         "RIP depth texture (on quest lol)",
         "RIP constant force (on quest lol)",
         "Don't bother with the dungeon warrior secret, its ass",
-        "at least it's not togen!",
         "[RandomFavoriteSpawnable] isn't even good.",
         "hey wait, you're not [CurrentAvatar], you're [UserName]!",
         "this is the 73rd line of the splash text list!",

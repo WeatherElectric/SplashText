@@ -6,6 +6,22 @@ public static class TemplateProcessing
     private static readonly List<string> UserDocumentsFilenames = [];
     private static readonly List<string> UserDownloadsFilenames = [];
     private static readonly List<string> UserDesktopFilenames = [];
+    private static readonly List<string> SteamGames = [];
+
+    internal static void CacheSteamGames()
+    {
+        if (!HelperMethods.IsAndroid())
+        {
+            var steamFolder = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + @"\Steam\steamapps\common";
+            var folders = Directory.GetDirectories(steamFolder).ToList();
+            foreach (var folder in folders)
+            {
+                var cleanFolderName = folder.Replace(steamFolder + "\\", "");
+                SteamGames.Add(cleanFolderName);
+            }
+        }
+        SteamGames.Add("(You're on a Quest, so I can't get your Steam games. Womp.)");
+    }
     
     internal static void CacheUserFiles()
     {
@@ -127,6 +143,12 @@ public static class TemplateProcessing
                 var rnd = new System.Random();
                 return UserDesktopFilenames[rnd.Next(UserDesktopFilenames.Count)];
             }
+        },
+        { "[RandomSteamGame]", () =>
+            {
+                var rnd = new System.Random();
+                return SteamGames[rnd.Next(SteamGames.Count)];
+            }
         }
     };
     
@@ -139,6 +161,20 @@ public static class TemplateProcessing
                 File.WriteAllText(txtFile, FileContents.GetRandomText());
                 return "";
             } 
+        },
+        { "[SpawnNullbody]", () =>
+            {
+                var playerPos = Player.RemapRig.transform.position;
+                var spawnLocation = playerPos + Player.RemapRig.transform.forward * 2;
+                HelperMethods.SpawnCrate(CommonBarcodes.NPCs.Nullbody, spawnLocation, Quaternion.identity, Vector3.one);
+                return "";
+            }
+        },
+        { "[PeterGriffin]", () =>
+            {
+                Application.OpenURL("https://familyguy.fandom.com/wiki/Peter_Griffin");
+                return "";
+            }
         }
     };
     

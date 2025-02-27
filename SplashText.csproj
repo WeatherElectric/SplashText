@@ -8,11 +8,11 @@
         <LangVersion>default</LangVersion>
         <IsPackable>false</IsPackable>
         <Company>Weather Electric</Company>
-        <AssemblyVersion>2.2.0.0</AssemblyVersion>
-        <FileVersion>2.2.0.0</FileVersion>
+        <AssemblyVersion>2.3.0.0</AssemblyVersion>
+        <FileVersion>2.3.0.0</FileVersion>
         <NeutralLanguage>en-US</NeutralLanguage>
         <AssemblyName>SplashText</AssemblyName>
-        <Version>2.2.0</Version>
+        <Version>2.3.0</Version>
         <Authors>Mabel Amber</Authors>
         <Title>SplashText</Title>
         <Description>Adds splash text to Void G114's menu.</Description>
