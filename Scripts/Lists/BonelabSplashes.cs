@@ -88,7 +88,17 @@ public static class BonelabSplashes
         ":3",
         "fuck you, i'm a bonelab splash",
         "fuckin [UserName] is here",
-        "do you think steam would take down bonelab's page because the game uses AI in some places"
+        "do you think steam would take down bonelab's page because the game uses AI in some places",
+        "my mom asked me if i did the dishes. i yelled \"StressLevelZero!” and she smiled. she knew it was washed.",
+        "the hands will get you.",
+        "fuck you [UserName]",
+        "SLZ PLEAS make hotmk and b-side for just PC",
+        "Quest: A Detriment To VR!",
+        "<color=\"yellow\">and when you return to the place that you call home, <color=\"green\">he <color=\"yellow\">will be there, <color=\"green\">he <color=\"yellow\">will be there.",
+        "if this game had wallrunning it'd be peak",
+        "this mod is loaded by an actually good modloader!",
+        "<color=\"green\">Ford",
+        "get pink screen of death'd, idiot"
     ];
 
     private const string SplashAPI = "https://splashtext.weatherelectric.xyz/";
@@ -137,45 +147,7 @@ public static class BonelabSplashes
         var rnd = new System.Random();
         var randomSplash = Splashes[rnd.Next(Splashes.Length)];
         
-        if (randomSplash.Contains("[PalletCount]"))
-        {
-            randomSplash = randomSplash.Replace("[PalletCount]", AssetWarehouse.Instance.GetPallets().Count.ToString());
-        }
-
-        if (randomSplash.Contains("[CurrentAvatar]"))
-        {
-            var crateRef = new AvatarCrateReference(Main.SaveData.PlayerSettings.CurrentAvatar);
-            randomSplash = randomSplash.Replace("[CurrentAvatar]", crateRef.Crate.Title);
-        }
-        
-        if (randomSplash.Contains("[Height"))
-        {
-            var height = Main.SaveData.PlayerSettings.PlayerHeight;
-            var feet = (int)height;
-            var inches = height - feet;
-            randomSplash = randomSplash.Replace("[Height]", $"{feet}'{inches}\"");
-        }
-        
-        if (randomSplash.Contains("[UserName]"))
-        {
-            randomSplash = randomSplash.Replace("[UserName]", Environment.UserName);
-        }
-
-        // It's gonna say this has errors: it does not. it builds fine, il2cpp just sucks
-        if (randomSplash.Contains("[RandomFavoriteSpawnable]"))
-        {
-            var spawnable = Main.SaveData.PlayerSettings.FavoriteSpawnables[(Index)rnd.Next(Main.SaveData.PlayerSettings.FavoriteSpawnables.Count)];
-            var crateRef = new SpawnableCrateReference((Barcode)spawnable);
-            randomSplash = randomSplash.Replace("[RandomFavoriteSpawnable]", crateRef.Crate.Title);
-        }
-        
-        if (randomSplash.Contains("[RandomFavoriteAvatar]"))
-        {
-            
-            var avatar = Main.SaveData.PlayerSettings.FavoriteAvatars[(Index)rnd.Next(Main.SaveData.PlayerSettings.FavoriteAvatars.Count)];
-            var crateRef = new AvatarCrateReference((Barcode)avatar);
-            randomSplash = randomSplash.Replace("[RandomFavoriteAvatar]", crateRef.Crate.Title);
-        }
+        randomSplash = TemplateProcessing.Process(randomSplash);
         
         return randomSplash;
     }

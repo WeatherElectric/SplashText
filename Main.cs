@@ -9,7 +9,7 @@ public class Main : MelonMod
     internal const string Description = "Adds splash text to Void G114's menu.";
     internal const string Author = "Mabel Amber";
     internal const string Company = "Weather Electric";
-    internal const string Version = "2.1.1";
+    internal const string Version = "2.2.0";
     internal const string DownloadLink = "https://bonelab.thunderstore.io/package/SoulWithMae/SplashText/";
 
     public static Save SaveData;
@@ -20,6 +20,7 @@ public class Main : MelonMod
         Preferences.Setup();
         BoneMenu.Setup();
         UserData.Setup();
+        TemplateProcessing.CacheUserFiles();
         
         SaveData = DataManager.Instance._activeSave;
         
@@ -44,6 +45,8 @@ public class Main : MelonMod
         var CPU = SystemInfo.processorType;
         var GPU = SystemInfo.graphicsDeviceName;
         var GPUVendor = SystemInfo.graphicsDeviceVendor;
+        var fileCreate = "check your users folder [PlaceTxtFile]";
+        fileCreate = TemplateProcessing.Process(fileCreate);
         string height;
         {
             var totalInches = SaveData.PlayerSettings.PlayerHeight * 0.393701;
@@ -51,6 +54,12 @@ public class Main : MelonMod
             var inches = (int)Math.Round(totalInches % 12);
             height = $"{feet}'{inches}\"";
         }
+        var randomPicture = "[RandomUserPicture]";
+        randomPicture = TemplateProcessing.Process(randomPicture);
+        var randomDocument = "[RandomUserDocument]";
+        randomDocument = TemplateProcessing.Process(randomDocument);
+        ModConsole.Msg($"Random picture: {randomPicture}", 1);
+        ModConsole.Msg($"Random document: {randomDocument}", 1);
         ModConsole.Msg($"Test text 1: {testText1}", 1);
         ModConsole.Msg($"Test text 2: {testText2}", 1);
         ModConsole.Msg($"Test text 3: {testText3}", 1);
@@ -60,6 +69,7 @@ public class Main : MelonMod
         ModConsole.Msg($"GPU: {GPU}", 1);
         ModConsole.Msg($"GPU Vendor: {GPUVendor}", 1);
         ModConsole.Msg($"Height: {height}", 1);
+        ModConsole.Msg($"File creation: {fileCreate}", 1);
 #endif
     }
 }
