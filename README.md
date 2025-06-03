@@ -28,8 +28,3 @@ These templates get replaced with what their value is.
 * [MachineName] = Your machine name
 * [TotalDiskSpace] = Your total disk space
 * [FreeDiskSpace] = Your free disk space
-* [RandomUserPicture] = A random picture from the user's pictures folder
-* [RandomUserDocument] = A random document from the user's documents folder
-* [RandomUserDownloadsFile] = A random file from the user's downloads folder
-* [RandomUserDesktopFile] = A random file from the user's desktop folder
-* [RandomSteamGame] = A random game from the user's steam library
