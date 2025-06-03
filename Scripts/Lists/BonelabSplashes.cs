@@ -100,7 +100,7 @@ public static class BonelabSplashes
         "get pink screen of death'd, idiot"
     ];
 
-    private const string SplashAPI = "https://splashtext.weatherelectric.xyz/";
+    private const string SplashAPI = "https://api.weatherelectric.xyz/splashes/";
 
     public delegate void FetchTextCallback(string fetchedText);
 

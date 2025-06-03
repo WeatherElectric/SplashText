@@ -2,68 +2,6 @@
 
 public static class TemplateProcessing
 {
-    private static readonly List<string> UserPicturesFilenames = [];
-    private static readonly List<string> UserDocumentsFilenames = [];
-    private static readonly List<string> UserDownloadsFilenames = [];
-    private static readonly List<string> UserDesktopFilenames = [];
-    private static readonly List<string> SteamGames = [];
-
-    internal static void CacheSteamGames()
-    {
-        if (!HelperMethods.IsAndroid())
-        {
-            var steamFolder = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + @"\Steam\steamapps\common";
-            var folders = Directory.GetDirectories(steamFolder).ToList();
-            foreach (var folder in folders)
-            {
-                var cleanFolderName = folder.Replace(steamFolder + "\\", "");
-                SteamGames.Add(cleanFolderName);
-            }
-        }
-        SteamGames.Add("(You're on a Quest, so I can't get your Steam games. Womp.)");
-    }
-    
-    internal static void CacheUserFiles()
-    {
-        // pictures
-        var picturesFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-        var files = Directory.GetFiles(picturesFolder).ToList();
-        foreach (var file in files)
-        {
-            UserPicturesFilenames.Add(Path.GetFileName(file));
-        }
-        
-        // documents
-        var documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        files = Directory.GetFiles(documentsFolder).ToList();
-        foreach (var file in files)
-        {
-            UserDocumentsFilenames.Add(Path.GetFileName(file));
-        }
-        
-        // downloads
-        var downloadsFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
-        files = Directory.GetFiles(downloadsFolder).ToList();
-        foreach (var file in files)
-        {
-            UserDownloadsFilenames.Add(Path.GetFileName(file));
-        }
-        var folders = Directory.GetDirectories(downloadsFolder).ToList();
-        foreach (var folder in folders)
-        {
-            var cleanFolderName = folder.Replace(downloadsFolder + "\\", "");
-            UserDownloadsFilenames.Add(cleanFolderName);
-        }
-        
-        // desktop
-        var desktopFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        files = Directory.GetFiles(desktopFolder).ToList();
-        foreach (var file in files)
-        {
-            UserDesktopFilenames.Add(Path.GetFileName(file));
-        }
-    }
-    
     private static readonly Dictionary<string, Func<string>> Replacements = new()
     {
         { "[UserName]", () => HelperMethods.IsAndroid() ? "Quest User" : Environment.UserName },
@@ -120,36 +58,6 @@ public static class TemplateProcessing
                 return drive.AvailableFreeSpace / 1024 / 1024 / 1024 + " GB";
             }
         },
-        { "[RandomUserPicture]", () =>
-            {
-                var rnd = new System.Random();
-                return UserPicturesFilenames[rnd.Next(UserPicturesFilenames.Count)];
-            }
-        },
-        { "[RandomUserDocument]", () =>
-            {
-                var rnd = new System.Random();
-                return UserDocumentsFilenames[rnd.Next(UserDocumentsFilenames.Count)];
-            }
-        },
-        { "[RandomUserDownloadsFile]", () =>
-            {
-                var rnd = new System.Random();
-                return UserDownloadsFilenames[rnd.Next(UserDownloadsFilenames.Count)];
-            }
-        },
-        { "[RandomUserDesktopFile]", () =>
-            {
-                var rnd = new System.Random();
-                return UserDesktopFilenames[rnd.Next(UserDesktopFilenames.Count)];
-            }
-        },
-        { "[RandomSteamGame]", () =>
-            {
-                var rnd = new System.Random();
-                return SteamGames[rnd.Next(SteamGames.Count)];
-            }
-        }
     };
     
     private static readonly Dictionary<string, Func<string>> Actions = new()
@@ -167,12 +75,6 @@ public static class TemplateProcessing
                 var playerPos = Player.RemapRig.transform.position;
                 var spawnLocation = playerPos + Player.RemapRig.transform.forward * 2;
                 HelperMethods.SpawnCrate(CommonBarcodes.NPCs.Nullbody, spawnLocation, Quaternion.identity, Vector3.one);
-                return "";
-            }
-        },
-        { "[PeterGriffin]", () =>
-            {
-                Application.OpenURL("https://familyguy.fandom.com/wiki/Peter_Griffin");
                 return "";
             }
         }

@@ -9,7 +9,7 @@ public class Main : MelonMod
     internal const string Description = "Adds splash text to Void G114's menu.";
     internal const string Author = "Mabel Amber";
     internal const string Company = "Weather Electric";
-    internal const string Version = "2.3.0";
+    internal const string Version = "2.3.1";
     internal const string DownloadLink = "https://bonelab.thunderstore.io/package/SoulWithMae/SplashText/";
 
     public static Save SaveData;
@@ -20,8 +20,6 @@ public class Main : MelonMod
         Preferences.Setup();
         BoneMenu.Setup();
         UserData.Setup();
-        TemplateProcessing.CacheUserFiles();
-        TemplateProcessing.CacheSteamGames();
         
         SaveData = DataManager.Instance._activeSave;
         
