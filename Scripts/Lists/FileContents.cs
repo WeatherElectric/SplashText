@@ -476,6 +476,12 @@ public static class FileContents
 	    "qweef",
 	    
 	    #endregion
+
+	    #region TechSide
+
+	    "If you don't shut up, I'll \"_yeet\" you out the window.",
+
+	    #endregion
     ];
 
     public static string GetRandomText()
