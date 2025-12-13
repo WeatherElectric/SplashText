@@ -28,3 +28,4 @@ These templates get replaced with what their value is.
 * [MachineName] = Your machine name
 * [TotalDiskSpace] = Your total disk space
 * [FreeDiskSpace] = Your free disk space
+* [DriveCount] = How many drives you have

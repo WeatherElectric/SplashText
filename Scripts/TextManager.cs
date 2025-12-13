@@ -19,15 +19,15 @@ internal static class TextManager
     private static void CreateGameObject()
     {
         var uiRoot = FuckYouSLZ("//-----UI");
-        ModConsole.Msg($"Found UI root: {uiRoot.name}", 1);
+        Main.Logger.Log($"Found UI root: {uiRoot.name}", LogLevel.Debug);
         var canvasRoot = uiRoot.transform.Find("CANVAS_UX");
-        ModConsole.Msg("Found canvas root", 1);
+        Main.Logger.Log("Found canvas root", LogLevel.Debug);
         var menuRoot = canvasRoot.Find("MENU");
-        ModConsole.Msg("Found menu root", 1);
+        Main.Logger.Log("Found menu root", LogLevel.Debug);
         var buildInfoObj = menuRoot.Find("txt_buildInfo").gameObject;
-        ModConsole.Msg("Found build info object", 1);
+        Main.Logger.Log("Found build info object", LogLevel.Debug);
         _splashTextHost = Object.Instantiate(buildInfoObj, menuRoot.transform);
-        ModConsole.Msg("Created splash text host", 1);
+        Main.Logger.Log("Created splash text host", LogLevel.Debug);
         return;
 
         // ReSharper disable once InconsistentNaming
@@ -44,22 +44,22 @@ internal static class TextManager
     {
         if (_splashTextHost == null) return;
         var splashTextRect = _splashTextHost.GetComponent<RectTransform>();
-        ModConsole.Msg("Got splash text rect", 1);
+        Main.Logger.Log("Got splash text rect", LogLevel.Debug);
         splashTextRect.position = new Vector3(28.1982f, 2.1303f, -3.7628f);
-        ModConsole.Msg("Set splash text position", 1);
+        Main.Logger.Log("Set splash text position", LogLevel.Debug);
         splashTextRect.rotation = Quaternion.Euler(0, -180, 30);
-        ModConsole.Msg("Set splash text rotation", 1);
+        Main.Logger.Log("Set splash text rotation", LogLevel.Debug);
         splashTextRect.localScale = new Vector3(10f, 10f, 10f);
-        ModConsole.Msg("Set splash text scale", 1);
+        Main.Logger.Log("Set splash text scale", LogLevel.Debug);
         _splashTextHost.name = "SplashTextHost";
-        ModConsole.Msg("Renamed splash text host", 1);
+        Main.Logger.Log("Renamed splash text host", LogLevel.Debug);
         _textMeshPro = _splashTextHost.GetComponent<TextMeshPro>();
         _textMeshPro.color = Color.yellow;
     }
 
     public static void SetText()
     {
-        if (_textMeshPro == null) return;
+        if (!_textMeshPro) return;
 
         switch (Preferences.SplashMode.Value)
         {
@@ -67,7 +67,7 @@ internal static class TextManager
                 _textMeshPro.text = MinecraftSplashes.GetRandomSplash();
                 break;
             case SplashMode.UserEntries:
-                _textMeshPro.text = EntryHelper.GetRandomEntry();
+                _textMeshPro.text = UserSplashes.GetRandomEntry();
                 break;
             case SplashMode.Bonelab:
                 SetBonelabSplash();
@@ -76,7 +76,7 @@ internal static class TextManager
                 _textMeshPro.text = TerrariaSplashes.GetRandomSplash();
                 break;
             default:
-                ModConsole.Error("Invalid splash mode! Defaulting to BONELAB.");
+                Main.Logger.Log("Invalid splash mode! Defaulting to BONELAB.", LogLevel.Error);
                 SetBonelabSplash();
                 break;
         }
@@ -89,11 +89,11 @@ internal static class TextManager
             _textMeshPro.text = BonelabSplashes.GetRandomOfflineSplash();
             return;
         }
-        BonelabSplashes.GetRandomOnlineSplash(Boobs);
+        BonelabSplashes.GetRandomOnlineSplash(TMPCallback);
 
         return;
 
-        void Boobs(string text)
+        void TMPCallback(string text)
         {
             _textMeshPro.text = text;
         }

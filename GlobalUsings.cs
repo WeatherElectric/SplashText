@@ -7,7 +7,7 @@ global using WeatherElectric.SplashText.Melon;
 global using BoneLib.BoneMenu;
 global using Il2CppSLZ.Marrow.Warehouse;
 global using UnityEngine;
-global using WeatherElectric.SplashText.Menu;
+global using WeatherElectric.Logging;
 global using WeatherElectric.SplashText.Scripts;
 global using WeatherElectric.SplashText.Scripts.Helpers;
 global using WeatherElectric.SplashText.Scripts.Lists;

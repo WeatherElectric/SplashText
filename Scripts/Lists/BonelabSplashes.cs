@@ -123,7 +123,7 @@ public static class BonelabSplashes
         {
             var randomSplash = request.downloadHandler.text;
             
-            ModConsole.Msg($"Text recieved: {randomSplash}", 1);
+            Main.Logger.Log($"Text recieved: {randomSplash}", LogLevel.Debug);
             
             randomSplash = TemplateProcessing.Process(randomSplash);
 
@@ -131,11 +131,11 @@ public static class BonelabSplashes
         }
         else
         {
-            ModConsole.Error("Failed to fetch random text. Webserver is likely offline. Using backup method.");
-            ModConsole.Error($"Webrequest Result: {request.result.ToString()}");
+            Main.Logger.Log("Failed to fetch random text. Webserver is likely offline. Using backup method.", LogLevel.Error);
+            Main.Logger.Log($"Webrequest Result: {request.result.ToString()}", LogLevel.Error);
             if (request.result is UnityWebRequest.Result.ConnectionError or UnityWebRequest.Result.ProtocolError)
             {
-                ModConsole.Error($"Error: {request.error}");
+                Main.Logger.Log($"Error {request.responseCode}: {request.error}", LogLevel.Error);
             }
             callback(GetRandomOfflineSplash());
         }

@@ -58,6 +58,12 @@ public static class TemplateProcessing
                 return drive.AvailableFreeSpace / 1024 / 1024 / 1024 + " GB";
             }
         },
+        { "[DriveCount]", () =>
+            {
+               var drives = DriveInfo.GetDrives();
+               return drives.Length.ToString();
+            }
+        }
     };
     
     private static readonly Dictionary<string, Func<string>> Actions = new()

@@ -6,7 +6,7 @@ public static class MinecraftSplashes
     [
         "...!",
         ".party()!",
-        "IS YOU! I HAVE MY FRIEND",
+        "[UserName] IS YOU! I HAVE MY FRIEND",
         "1% sugar!",
         "100% pure!",
         "10 years of Mining and Crafting! It’s a Minecraft anniversary!",
@@ -252,10 +252,7 @@ public static class MinecraftSplashes
     {
         var rnd = new System.Random();
         var randomSplash = Splashes[rnd.Next(Splashes.Length)];
-        if (randomSplash.Contains("IS YOU! I HAVE MY FRIEND"))
-        {
-            randomSplash = $"{Environment.UserName} IS YOU! I HAVE MY FRIEND";
-        }
+        randomSplash = TemplateProcessing.Process(randomSplash);
         return randomSplash;
     }
 }
